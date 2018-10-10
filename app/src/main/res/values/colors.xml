@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="login_tip_color">#D34F50</color>
+    <color name="bottom_menu_login_button">#3487ee</color>
+    <color name="bottom_menu_login_change_button">#1889fA</color>
+    <color name="bottom_menu_tip">#3f3f3f</color>
+
+    <color name="update_line_color">#e2e2e2</color>
+    <color name="login_help_bg_color">#f2f2f2</color>
+    <color name="login_help_content_color">#9C9C9C</color>
+
+</resources>
