@@ -52,4 +52,8 @@ public class AccountAdapter extends BaseAdapter {
         textTitle.setText(hub.getAccount());
         return convertView;
     }
+
+    public void setHubs(List<HotspotUserBean> hubs) {
+        this.hubs = hubs;
+    }
 }

@@ -35,9 +35,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TABLENAME = "user";
-    /**
-     * 必须添加if not exists,否则第二次进入的时候会报该表已经创建的提示
-     */
     private static final String CREATETABLE = "CREATE TABLE if not exists " + TABLENAME +
             "(_id INTEGER PRIMARY KEY AUTOINCREMENT,code TEXT,account TEXT,pwd TEXT,createdTime" +
             " TimeStamp NOT NULL DEFAULT (datetime('now','localtime')))";
@@ -166,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lpw.setBackgroundDrawable(backgroundDrawable);
             lpw.setAdapter(accountAdapter);
             lpw.setWidth(etAccount.getWidth());
-            //设置lpw锚点，表示lpw跟随哪一个控件联系在一起，必须添加该方法否则会报错
+            lpw.setHeight(ListPopupWindow.WRAP_CONTENT);
             lpw.setAnchorView(etAccount);
             lpw.setDropDownGravity(Gravity.BOTTOM);
             lpw.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -177,8 +174,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         } else {
             //当数据发生改变的时候刷新适配器
-            accountAdapter.notifyDataSetChanged();
+            accountAdapter.setHubs(hubs);
         }
+
         //控制提示框的高度
         if (hubs != null && hubs.size() > 5) {
             int heightPixels = getResources().getDisplayMetrics().heightPixels;
@@ -186,8 +184,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             lpw.setHeight(ListPopupWindow.WRAP_CONTENT);
         }
+
         lpw.show();
-        if (lpw.isShowing()) {
+        if (lpw.isShowing() && hubs != null && hubs.size() > 0) {
             ibRecord.setBackgroundResource(R.drawable.denglu_shang);
         }
         //必须添加在show()方法之后，否则getListView()方法获取不到ListView实例
